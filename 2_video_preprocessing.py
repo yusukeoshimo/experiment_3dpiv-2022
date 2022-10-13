@@ -11,6 +11,7 @@ from experiment.pre_process.laser_hight import binary_processing, extract_larges
 from experiment.classification.mk_video4flownizer import main as mk_video4flownizer
 
 json_path = input('input json path > ')
+frame_interval = int(input('input frame_interval >'))
 
 control_dict = read_json(json_path)
 project_dir_path = control_dict['project_dir_path']
@@ -50,7 +51,6 @@ for position in ['side', 'bottom']:
         cut_edge = right_cut
     elif pulse_order == 'second':
         cut_edge = left_cut
-    frame_interval = 20
     codec = control_dict[position]['raw_video_codec']
     video_path = os.path.join(project_dir_path, position, 'FrameInterval_{}.avi'.format(frame_interval))
     control_dict[position]['video_path'] = video_path

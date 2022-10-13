@@ -8,6 +8,7 @@ from util.my_json import read_json, write_json
 from util.txt_replacement import extract_txt
 from util import winpath
 import shutil
+import glob
 
 def main():
     copied_path = input('input project dir path you would like to copy >')
@@ -30,7 +31,12 @@ def main():
     for position in ['side', 'bottom']:
         new_d[position] = {}
     write_json(new_json_path, new_d)
-
+    
+    # iccaptureのファイルをコピー
+    src_iccf = glob.glob(os.path.join(copied_path, 'system', '*.iccf'))[0]
+    dst_iccf = os.path.join(new_project_path, 'system', os.path.basename(src_iccf))
+    shutil.copy2(src_iccf, dst_iccf)
+    
     # LightGBMモデルのコピー，パスをjsonに追加
     new_d = read_json(new_json_path)
     for position in ['side', 'bottom']:
@@ -84,7 +90,9 @@ def main():
         elif y_or_n == 'n':
             recalib_bool = False
             shutil.copy2(os.path.join(copied_path, position, 'grid.csv'), os.path.join(new_project_path, position, 'grid.csv'))
-        new_d = read_json(new_json_path)
+            shutil.copy2(os.path.join(copied_path, position, 'on.bmp'), os.path.join(new_project_path, position, 'on.bmp'))
+            shutil.copy2(os.path.join(copied_path, position, 'off.bmp'), os.path.join(new_project_path, position, 'off.bmp  '))
+            new_d = read_json(new_json_path)
         new_d['recalib_bool'] = recalib_bool
         write_json(new_json_path, new_d)
     
@@ -95,4 +103,4 @@ def main():
     write_json(new_json_path, new_d)
     
 if __name__ == '__main__':
-    main()
+    main()                      

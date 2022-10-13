@@ -100,6 +100,8 @@ if __name__ == '__main__':
     # 入力データに使えるインデックスを抽出
     side_df.loc[(side_df['uod']==True) & (side_df['bottom_uod']==True), 'data_bool'] = True
     
+    side_df.to_csv(side_csv_path)
+    
     # side, bottom共にuodを満たしたデータのuxを算出
     mk_fig(side_df, os.path.join(project_dir_path, 'side', 'ux_vs_ux_uod.png'))
     

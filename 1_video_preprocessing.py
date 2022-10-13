@@ -10,7 +10,7 @@ from experiment.classification.classification_per_pulse import main as classific
 from util.txt_replacement import extract_txt
 from others.intensity_vs_time import main as mk_fig
 
-json_path = input('input json path > ')
+json_path = input('input json path > ') 
 control_dict = read_json(json_path)
 project_dir_path = control_dict['project_dir_path']
 

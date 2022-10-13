@@ -14,12 +14,12 @@ control_dict = read_json(json_path)
 project_dir_path = control_dict['project_dir_path']
 
 for position in ['side', 'bottom']:
+    grid_path = os.path.join(project_dir_path, position, 'grid.csv')
     recalib_bool = control_dict['recalib_bool']
     if recalib_bool == True:
         txt_path = os.path.join(project_dir_path, position, 'calibration', 'Cam01', 'Calib01', 'Calibration.cal')
         start_str = 'Error distribution in physical coordinate'
         end_str = 'RMS'
-        grid_path = os.path.join(project_dir_path, position, 'grid.csv')
         txt2csv(txt_path, start_str, end_str, save_path=grid_path)
     calib = calibrator(grid_len_phys=5, grid_len_pix=44, csv_path=grid_path) # grid_len_pix は偶数でないとダメ
     if recalib_bool == True:
