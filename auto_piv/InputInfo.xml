@@ -1,0 +1,32 @@
+<InputImageInfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/WpfIntr">
+  <CurrentFile>
+    <ColorMode>GRAYSCALE</ColorMode>
+    <FirstFrame>0</FirstFrame>
+    <FrameTotal>170</FrameTotal>
+    <Grayscale>AVERAGE_RGB</Grayscale>
+    <ImageDirectory>F:\3DPIV-2022\project\project_2022_9_28_14_26_13\side</ImageDirectory>
+    <ImageFilename>mapped_FrameInterval_20.avi</ImageFilename>
+    <ImageFilterIndex>1</ImageFilterIndex>
+    <Interlace>NONINTERLACE</Interlace>
+    <LastFrame>169</LastFrame>
+    <RenbanKaishi>1</RenbanKaishi>
+    <RenbanKeta>4</RenbanKeta>
+    <SelectionEnd>169</SelectionEnd>
+    <SelectionStart>0</SelectionStart>
+  </CurrentFile>
+  <OriginalFile>
+    <ColorMode>GRAYSCALE</ColorMode>
+    <FirstFrame>0</FirstFrame>
+    <FrameTotal>170</FrameTotal>
+    <Grayscale>AVERAGE_RGB</Grayscale>
+    <ImageDirectory>F:\3DPIV-2022\project\project_2022_9_28_14_26_13\side</ImageDirectory>
+    <ImageFilename>mapped_FrameInterval_20.avi</ImageFilename>
+    <ImageFilterIndex>1</ImageFilterIndex>
+    <Interlace>NONINTERLACE</Interlace>
+    <LastFrame>169</LastFrame>
+    <RenbanKaishi>1</RenbanKaishi>
+    <RenbanKeta>4</RenbanKeta>
+    <SelectionEnd>169</SelectionEnd>
+    <SelectionStart>0</SelectionStart>
+  </OriginalFile>
+</InputImageInfo>

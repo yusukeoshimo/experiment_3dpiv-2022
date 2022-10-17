@@ -1,0 +1,16 @@
+<CalibSettingsVM xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/WpfIntr">
+  <AxisAngle>0</AxisAngle>
+  <CalibType>Simple</CalibType>
+  <Dxm>2</Dxm>
+  <Dym>2</Dym>
+  <IsReversedYAxis>false</IsReversedYAxis>
+  <MmPerPixX>1</MmPerPixX>
+  <MmPerPixY>1</MmPerPixY>
+  <Order>2</Order>
+  <PlateDepth>0</PlateDepth>
+  <Px>0</Px>
+  <Pxm>0</Pxm>
+  <Py>0</Py>
+  <Pym>0</Pym>
+  <Unit>millimeter</Unit>
+</CalibSettingsVM>

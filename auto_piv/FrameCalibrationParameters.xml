@@ -1,0 +1,13 @@
+<CalibFrameVm xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/WpfIntr">
+  <ActualCompareIntervalTimeUnit>sec</ActualCompareIntervalTimeUnit>
+  <CompareInterval>0</CompareInterval>
+  <CompareIntervalTime>1</CompareIntervalTime>
+  <CompareIntervalTimeUnit>sec</CompareIntervalTimeUnit>
+  <ImageSelStart>0</ImageSelStart>
+  <LastFrameCam01>0</LastFrameCam01>
+  <LastFrameCam02>0</LastFrameCam02>
+  <ReferenceFps>1</ReferenceFps>
+  <SkipInterval>1</SkipInterval>
+  <SkipIntervalTime>2</SkipIntervalTime>
+  <SkipIntervalTimeUnit>sec</SkipIntervalTimeUnit>
+</CalibFrameVm>
