@@ -53,6 +53,7 @@ def main(json_path, frame_interval):
         video_path = os.path.join(project_dir_path, position, 'FrameInterval_{}.avi'.format(frame_interval))
         control_dict[position]['video_path'] = video_path
         mk_video4flownizer(video_path, pulse_order, frame_interval, cut_edge, subtract_dir, h, w, codec)
+        control_dict[position]['frame_interval'] = frame_interval
 
     write_json(json_path, control_dict)
 
