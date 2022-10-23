@@ -27,6 +27,7 @@ def mk_fig(df, save_path):
     ax.set_aspect('equal')
     fig.savefig(save_path)
     del fig
+    return a, b
 
 def Velocity_vs_FrameOreder(csv_path, save_path):
     df = pd.read_csv(csv_path)
@@ -111,7 +112,10 @@ def main(json_path):
     side_df.to_csv(side_csv_path)
     
     # side, bottom共にuodを満たしたデータのuxを算出
-    mk_fig(side_df, os.path.join(project_dir_path, 'side', 'ux_vs_ux_{}.png'.format(control_dict['side']['frame_interval'])))
+    a, b = mk_fig(side_df, os.path.join(project_dir_path, 'side', 'ux_vs_ux_{}.png'.format(control_dict['side']['frame_interval'])))
+    control_dict[position]['ux_vs_ux_a'] = a
+    control_dict[position]['ux_vs_ux_b'] = b
+    write_json(json_path, control_dict)
     
     Velocity_vs_FrameOreder(side_csv_path, os.path.join(project_dir_path, 'side', 'velocity_vs_FrameOrder_{}.png'.format(control_dict['side']['frame_interval'])))
 
