@@ -94,12 +94,12 @@ def main(json_path):
             uod_bool_list.append((subtract_x < threshold_x) & (subtract_y < threshold_y))
         concat_df.loc[concat_df['inner_point']==True, 'uod'] = uod_bool_list
         
-        concat_df.to_csv(os.path.join(project_dir_path, position, 'velocity', 'velocity.csv'))
+        concat_df.to_csv(os.path.join(project_dir_path, position, 'velocity', 'velocity_{}.csv'.format(control_dict[position]['frame_interval'])))
     
     # bottomのdx, dy, uodをsideに移動
-    side_csv_path = os.path.join(project_dir_path, 'side', 'velocity', 'velocity.csv')
+    side_csv_path = os.path.join(project_dir_path, 'side', 'velocity', 'velocity_{}.csv'.format(control_dict['side']['frame_interval']))
     side_df = pd.read_csv(side_csv_path)
-    bottom_csv_path = os.path.join(project_dir_path, 'bottom', 'velocity', 'velocity.csv')
+    bottom_csv_path = os.path.join(project_dir_path, 'bottom', 'velocity', 'velocity_{}.csv'.format(control_dict['bottom']['frame_interval']))
     bottom_df = pd.read_csv(bottom_csv_path)
     side_df['bottom_uod'] = bottom_df['uod']
     side_df['bottom_dx'] = bottom_df['dx']
