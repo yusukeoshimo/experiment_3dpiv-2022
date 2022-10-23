@@ -28,18 +28,26 @@ def mk_fig(df, save_path):
     fig.savefig(save_path)
     del fig
 
-def video_roi(video_path, frame_order, x, y, w, h):
-    cap = cv2.VideoCapture(video_path)
-    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_order)
-    ret, frame = cap.read()
-    if ret:
-        frame = frame[:,:,0] # gray scaleに変換
-        roi = cv2.getRectSubPix(frame, (w, h), (x, y))
-        return roi
+def Velocity_vs_FrameOreder(csv_path, save_path):
+    df = pd.read_csv(csv_path)
+    dx_abs_max = []
+    dy_abs_max = []
+    dz_abs_max = []
+    file_order_list = list(range(df['file_order'].max()))
+    for file_order in file_order_list:
+        data_df = df.loc[(df['data_bool']==True) & (df['file_order']==file_order)]
+        dx_abs_max.append(data_df['dx'].abs().max())
+        dy_abs_max.append(data_df['dy'].abs().max())
+        dz_abs_max.append(data_df['dz'].abs().max())
+    fig = plt.figure()
+    plt.plot(file_order_list, dx_abs_max, label='dx')
+    plt.plot(file_order_list, dy_abs_max, label='dy')
+    plt.plot(file_order_list, dz_abs_max, label='dz')
+    plt.legend()
+    fig.savefig(save_path)
+    del fig
 
-
-if __name__ == '__main__':
-    json_path = input('input json path > ')
+def main(json_path):
     control_dict = read_json(json_path)
     project_dir_path = control_dict['project_dir_path']
     
@@ -103,29 +111,11 @@ if __name__ == '__main__':
     side_df.to_csv(side_csv_path)
     
     # side, bottom共にuodを満たしたデータのuxを算出
-    mk_fig(side_df, os.path.join(project_dir_path, 'side', 'ux_vs_ux_uod.png'))
+    mk_fig(side_df, os.path.join(project_dir_path, 'side', 'ux_vs_ux_{}.png'.format(control_dict['side']['frame_interval'])))
     
-    # 画像を抽出
-    print('入力データを作成中...')
-    data_num = len(side_df.loc[side_df['data_bool']==True])
-    input_memmap = np.memmap(os.path.join(project_dir_path, 'side', 'cnn_input.npy'), dtype=np.uint8, mode='w+', shape=(data_num, 32, 32, 2))
-    label_memmap = np.memmap(os.path.join(project_dir_path, 'side', 'cnn_label.npy'), dtype=np.float16, mode='w+', shape=(data_num, 3))
-    i = 0
-    for idx, row in side_df.loc[side_df['data_bool']==True].iterrows():
-        # input_memmapに書き込み
-        video_path = os.path.join(project_dir_path, 'side', 'mapped_FrameInterval_20.avi')
-        frame_order = row['first_frame']
-        x = row['x']
-        y = row['y']
-        w = 32
-        h = 32
-        roi_0 = video_roi(video_path, frame_order, x, y, w, h)
-        frame_order = row['second_frame']
-        roi_1 = video_roi(video_path, frame_order, x, y, w, h)
-        input_data = np.array([roi_0, roi_1])
-        input_data = input_data.transpose(1,2,0) # channel last
-        input_memmap[i] = input_data
-        
-        # label_memmapに書き込み
-        label_memmap[i] = np.array([row['dx'], row['dy'], row['dz']]).astype(np.float16)
-        i += 1
+    Velocity_vs_FrameOreder(side_csv_path, os.path.join(project_dir_path, 'side', 'velocity_vs_FrameOrder_{}.png'.format(control_dict['side']['frame_interval'])))
+
+
+if __name__ == '__main__':
+    json_path = input('input json path > ')
+    main(json_path)
