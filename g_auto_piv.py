@@ -155,7 +155,7 @@ def main(json_path, inner_len, outer_len, interval):
         src_Cbc = extract_txt(txt, '<Cbc>', '</Cbc>')
         src_IgnoreCorrave = extract_txt(txt, '<IgnoreCorrave>', '</IgnoreCorrave>')
         dst_Tolerance = '9999'
-        dst_Cbc = '1'
+        dst_Cbc = '0'
         dst_IgnoreCorrave = 'true'
         for i in range(len(src_Tolerance)):
             txt = txt.replace('<Tolerance>'+src_Tolerance[i]+'</Tolerance>', '<Tolerance>'+dst_Tolerance+'</Tolerance>')
